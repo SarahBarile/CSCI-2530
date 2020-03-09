@@ -1,0 +1,23 @@
+CFLAGS = -g -Wall -W -Wshadow -Wuninitialized -O
+CC     = g++
+LINK   = g++
+OFILES = equiv.o testequiv.o
+
+testequiv: $(OFILES)
+	$(LINK) -o testequiv $(OFILES) 
+
+testequiv.o: testequiv.cpp equiv.h
+	$(CC) $(CFLAGS) -c testequiv.cpp
+
+equiv.o: equiv.cpp equiv.h
+	$(CC) $(CFLAGS) -c equiv.cpp
+
+test: testequiv
+	chmod u+x dotest
+	./dotest
+
+debug: testequiv
+	gdb ./testequiv
+
+clean: 
+	rm $(OFILES) testequiv

@@ -1,0 +1,22 @@
+#!/bin/csh
+
+if ( ! -f hailstone ) then
+  echo "hailstone.cpp has not been compiled."
+  exit 1
+endif
+
+limit cputime 2
+foreach n (1 2 3 4 5 7 8 9 10 16 27 28 29 30 31 34 35 96 97 99 129 150 871)
+  echo "---------------------------------------"
+  echo "n = ${n}"
+  echo
+  echo ${n} | ./hailstone
+  set s = $status
+  if ($s == 152) then
+    echo "Time limit exceeded"
+  else if ($s == 139) then
+    echo "Segmentation fault"
+  else if ($s != 0) then
+    echo "Fault" $s
+  endif
+end

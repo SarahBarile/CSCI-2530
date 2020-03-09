@@ -1,0 +1,5 @@
+assn0: assn0.cpp
+	g++ -g -Wall -W -o assn0 assn0.cpp
+
+run:
+	./assn0

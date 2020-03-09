@@ -1,0 +1,15 @@
+CFLAGS = -Wall -W -Wshadow -Wuninitialized
+CC     = g++ $(CFLAGS) -g
+
+points: points.cpp
+	$(CC) -o points points.cpp
+
+run: points
+	./points
+
+test: points
+	chmod u+x dotest
+	./dotest
+
+clean:
+	rm points
